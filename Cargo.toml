@@ -1,0 +1,14 @@
+[package]
+name = "aspa_transparent_rses"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bgpkit-parser = "0.9.4"
+bgpkit-broker = "0.6.1"
+ipnet = "2.7.2"
+crossbeam-channel = "0.5.8"
+threadpool = "1.8.1"
+itertools = "0.10.5"
