@@ -1,4 +1,17 @@
-# aspa_transparent_rses
+# Observability Statistics for transparent Route Servers
+
+To build this run:
+
+```cargo build --release```
+
+and then run:
+
+```./target/release/aspa_transparent_rses```
+
+, which will obtain statistics for the Route Server ASNs and timestamp hard-coded in  ```src/main.rs```. If you change the timestamp, please make sure that you pick only timestamps that represent 00:00 UTC+0, 08:00 UTC+0, or 16:00 UTC+0 of any past day, as these are the times for which all collectors produce RIB snapshots.
+
+
+
 
 ###  Results for 2023-07-24, 16:00:00 UTC
 ```
