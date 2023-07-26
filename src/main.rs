@@ -17,6 +17,21 @@ fn setup_target_asns() -> HashMap<u32, String> {
     target_asns.insert(37195, "NapAfrica".to_string());
     target_asns.insert(8714, "LINX".to_string());
     target_asns.insert(33108, "SIX".to_string());
+    target_asns.insert(50952, "DATAIX".to_string());
+    target_asns.insert(8631, "MSK-IX Moscow".to_string());
+    target_asns.insert(61968, "MIX-IT".to_string());
+    target_asns.insert(4635, "HKIX".to_string());
+    target_asns.insert(32184, "Any2".to_string());
+    target_asns.insert(33108, "SIX".to_string());
+    target_asns.insert(13538, "NYIIX".to_string());
+    target_asns.insert(11670, "TorIX".to_string());
+    target_asns.insert(49869, "PiterIX".to_string());
+    target_asns.insert(52005, "Netnod".to_string());
+    target_asns.insert(31210, "DTEL-IX".to_string());
+    target_asns.insert(63034, "DE-CIX New York".to_string());
+    target_asns.insert(42476, "SwissIX".to_string());
+    target_asns.insert(47200, "NIC.CZ".to_string());
+    target_asns.insert(26162, "IX.br".to_string());
     target_asns
 }
 
@@ -73,7 +88,7 @@ fn run_consumer_and_print(ch_in: Receiver<(u32, u32, IpNet)>, target_rses: &Hash
     }
 
     // produce & display summary.
-    for (asn, name) in target_rses.iter() {
+    for (asn, name) in target_rses.iter().sorted_by_key(|&(asn, _)| -(members_per_rs.entry(*asn).or_default().len() as i32)) {
         let cnt_mem: usize = members_per_rs.entry(*asn).or_default().len();
         let cnt_pfx_v4: usize = pfx_per_rs
             .entry(*asn)
@@ -105,7 +120,7 @@ fn main() {
 
     // configuration
     let num_workers = 20;
-    let rib_ts = 1690214400; // 2023-07-24, 16:00:00 UTC
+        let rib_ts = 1690214400; // 2023-07-24, 16:00:00 UTC
     let target_asns = setup_target_asns();
 
     // worker pool and channels for connecting
