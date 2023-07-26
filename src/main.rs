@@ -110,7 +110,11 @@ fn run_consumer_and_print(ch_in: Receiver<(u32, u32, IpNet)>, target_rses: &Hash
             .count();
 
         println!(
-            "{} (AS{}) has {} RS re-appending members across {} IPv4 and {} IPv6 prefixes.",
+            "{0: <20} | {1: <10 } | {2: <20} | {2: <10} | {3: <25} | {4: <25}",
+            "IX", "RS ASN", "re-appending members", "IPv4 Prefixes involved", "IPv6 Prefixes involved"
+        );
+        println!(
+            "{0: <20} | {1: <10 } | {2: <20} | {2: <10} | {3: <25} | {4: <25}",
             name, asn, cnt_mem, cnt_pfx_v4, cnt_pfx_v6
         );
     }
