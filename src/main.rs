@@ -88,9 +88,11 @@ fn run_consumer_and_print(ch_in: Receiver<(u32, u32, IpNet)>, target_rses: &Hash
     }
 
     println!(
-        "{0: <20} | {1: <10 } | {2: <20} | {2: <10} | {3: <25} | {4: <25}",
+        "{0: <20} | {1: <8 } | {2: <20} | {3: <25} | {4: <25}",
         "IX", "RS ASN", "re-appending members", "IPv4 Prefixes involved", "IPv6 Prefixes involved"
     );
+    println!("{0:-<20}-+-{1:-<8 }-+-{2:-<20}-+-{3:-<25}-+-{4:-<25}",
+        "", "", "", "", "");
     // produce & display summary.
     for (asn, name) in target_rses.iter().sorted_by_key(|&(asn, _)| -(members_per_rs.entry(*asn).or_default().len() as i32)) {
         let cnt_mem: usize = members_per_rs.entry(*asn).or_default().len();
@@ -113,7 +115,7 @@ fn run_consumer_and_print(ch_in: Receiver<(u32, u32, IpNet)>, target_rses: &Hash
             })
             .count();
         println!(
-            "{0: <20} | {1: <10 } | {2: <20} | {2: <10} | {3: <25} | {4: <25}",
+            "{0: <20} | {1: <8 } | {2: <20} | {3: <25} | {4: <25}",
             name, asn, cnt_mem, cnt_pfx_v4, cnt_pfx_v6
         );
     }
